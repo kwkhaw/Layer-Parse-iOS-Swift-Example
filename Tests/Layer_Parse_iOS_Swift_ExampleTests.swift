@@ -1,11 +1,3 @@
-//
-//  Layer_Parse_iOS_Swift_ExampleTests.swift
-//  Layer-Parse-iOS-Swift-ExampleTests
-//
-//  Created by kw on 5/6/15.
-//  Copyright (c) 2015 layer. All rights reserved.
-//
-
 import UIKit
 import XCTest
 

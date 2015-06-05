@@ -1,21 +1,31 @@
-//
-//  AppDelegate.swift
-//  Layer-Parse-iOS-Swift-Example
-//
-//  Created by kw on 5/6/15.
-//  Copyright (c) 2015 layer. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var layerClient: LYRClient!
+    
+    // MARK TODO: Before first launch, update LayerAppIDString, ParseAppIDString or ParseClientKeyString values
+    // TODO:If LayerAppIDString, ParseAppIDString or ParseClientKeyString are not set, this app will crash"
+    let LayerAppIDString: NSUUID! = NSUUID(UUIDString: "")
+    let ParseAppIDString: String = ""
+    let ParseClientKeyString: String = ""
+    
+    //Please note, You must set `LYRConversation *conversation` as a property of the ViewController.
+    var conversation: LYRConversation!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        setupParse()
+        self.layerClient = LYRClient(appID: LayerAppIDString)
+    
+        // Show View Controller
+        let controller: ViewController = ViewController()
+        controller.layerClient = layerClient
+        
+        self.window!.rootViewController = UINavigationController(rootViewController: controller)
+        self.window!.backgroundColor = UIColor.whiteColor()
+        self.window!.makeKeyAndVisible()
         return true
     }
 
@@ -41,6 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func setupParse() {
+        // Enable Parse local data store for user persistence
+        Parse.enableLocalDatastore()
+        Parse.setApplicationId(ParseAppIDString, clientKey: ParseClientKeyString)
+        
+        // Set default ACLs
+        let defaultACL: PFACL = PFACL()
+        defaultACL.setPublicReadAccess(true)
+        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+    }
 }
 
