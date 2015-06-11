@@ -39,7 +39,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 
     // MARK - ATLConversationViewControllerDataSource methods
 
-    func conversationViewController(conversationViewController: ATLConversationViewController, participantForIdentifier participantIdentifier: String) -> ATLParticipant {
+    func conversationViewController(conversationViewController: ATLConversationViewController, participantForIdentifier participantIdentifier: String) -> ATLParticipant? {
         if (participantIdentifier == PFUser.currentUser()!.objectId!) {
             return PFUser.currentUser()!
         }
@@ -55,7 +55,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
                 }
             }
         }
-        return user!
+        return user
     }
 
     func conversationViewController(conversationViewController: ATLConversationViewController, attributedStringForDisplayOfDate date: NSDate) -> NSAttributedString? {
