@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setupParse()
-        self.layerClient = LYRClient(appID: LayerAppIDString)
+        setupLayer()
     
         // Show View Controller
         let controller: ViewController = ViewController()
@@ -60,6 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaultACL: PFACL = PFACL()
         defaultACL.setPublicReadAccess(true)
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+    }
+    
+    func setupLayer() {
+        layerClient = LYRClient(appID: LayerAppIDString)
+        layerClient.autodownloadMaximumContentSize = 1024 * 100
+        layerClient.autodownloadMIMETypes = NSSet(objects: "image/jpeg") as Set<NSObject>
     }
 }
 
