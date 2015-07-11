@@ -8,7 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK TODO: Before first launch, update LayerAppIDString, ParseAppIDString or ParseClientKeyString values
     // TODO:If LayerAppIDString, ParseAppIDString or ParseClientKeyString are not set, this app will crash"
-    let LayerAppIDString: NSUUID! = NSUUID(UUIDString: "")
+    let LayerAppIDString: NSURL! = NSURL(string: "")
     let ParseAppIDString: String = ""
     let ParseClientKeyString: String = ""
     
