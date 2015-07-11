@@ -19,7 +19,7 @@ This application requires Xcode and the iOS SDK v8.0. Dependencies are managed v
 3. Open `Layer-Parse-iOS-Swift-Example.xcworkspace` in Xcode.
 4. Replace `LayerAppIDString` , `ParseAppIDString` , and `ParseClientKeyString` in `AppDelegate.swift` with your Layer and Parse credentials.
 5. Add the [Layer Parse Module](https://github.com/layerhq/layer-parse-module) to your Parse Cloud Code to serve as an authentication manager.
-6. (Recommended) If you want test users, import the User.json file found under Supporting Files from the XCode project into your User class on Parse.
+6. (Recommended) If you want test users, import the `Resources/Users.json` file into your User class on Parse.
 7. Build and run the application on your Simulator to create a new user and begin messaging!
 
 For more in-depth documentation about this project, check our [guide](https://developer.layer.com/docs/guides/ios#parse).
