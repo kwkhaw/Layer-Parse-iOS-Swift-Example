@@ -76,6 +76,10 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
     }
 
     func logInViewController(logInController: PFLogInViewController, didFailToLogInWithError error: NSError?) {
+        if let description = error?.localizedDescription {
+            let cancelButtonTitle = NSLocalizedString("OK", comment: "")
+            UIAlertView(title: description, message: nil, delegate: nil, cancelButtonTitle: cancelButtonTitle).show()
+        }
         println("Failed to log in...")
     }
 
