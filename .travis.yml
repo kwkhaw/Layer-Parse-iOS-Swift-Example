@@ -4,10 +4,5 @@ branches:
  only:
  - master
 
-xcode_project: Layer-Parse-iOS-Swift-Example.xcodeproj
-xcode_scheme: Layer-Parse-iOS-Swift-Example
-osx_image: xcode6.3
-xcode_sdk: iphonesimulator8.3 
-
 script:
-- xcodebuild clean build -project Layer-Parse-iOS-Swift-Example.xcodeproj -scheme Layer-Parse-iOS-Swift-Example
+- xcodebuild -workspace Layer-Parse-iOS-Swift-Example.xcworkspace -scheme Layer-Parse-iOS-Swift-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO

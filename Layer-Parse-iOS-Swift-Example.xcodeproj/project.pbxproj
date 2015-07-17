@@ -224,6 +224,7 @@
 		C8919A421B2198C900DC4EED /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = layer;
 				TargetAttributes = {
