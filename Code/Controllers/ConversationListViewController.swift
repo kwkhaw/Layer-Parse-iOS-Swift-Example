@@ -27,10 +27,13 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
     // MARK - ATLConversationListViewControllerDelegate Methods
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, didSelectConversation conversation:LYRConversation) {
-        let controller = ConversationViewController(layerClient: self.layerClient)
-        controller.conversation = conversation
-        controller.displaysAddressBar = true
-        self.navigationController!.pushViewController(controller, animated: true)
+        let unresolvedParticipants: NSArray = UserManager.sharedManager.unCachedUserIDsFromParticipants(Array(conversation.participants))
+        if unresolvedParticipants.count == 0 {
+            let controller = ConversationViewController(layerClient: self.layerClient)
+            controller.conversation = conversation
+            controller.displaysAddressBar = true
+            self.navigationController!.pushViewController(controller, animated: true)
+        }
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, didDeleteConversation conversation: LYRConversation, deletionMode: LYRDeletionMode) {
