@@ -37,11 +37,11 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, didDeleteConversation conversation: LYRConversation, deletionMode: LYRDeletionMode) {
-        println("Conversation deleted")
+        print("Conversation deleted")
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, didFailDeletingConversation conversation: LYRConversation, deletionMode: LYRDeletionMode, error: NSError?) {
-        println("Failed to delete conversation with error: \(error)")
+        print("Failed to delete conversation with error: \(error)")
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, didSearchForText searchText: String, completion: ((Set<NSObject>!) -> Void)?) {
@@ -54,7 +54,7 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
                 if let callback = completion {
                     callback(nil)
                 }
-                println("Error searching for Users by name: \(error)")
+                print("Error searching for Users by name: \(error)")
             }
         }
     }
@@ -76,7 +76,7 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
                             self.reloadCellForConversation(conversation)
                         }
                     } else {
-                        println("Error querying for Users: \(error)")
+                        print("Error querying for Users: \(error)")
                     }
                 }
             }
@@ -101,14 +101,14 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
     }
 
     func logoutButtonTapped(sender: AnyObject) {
-        println("logOutButtonTapAction")
+        print("logOutButtonTapAction")
         
         self.layerClient.deauthenticateWithCompletion { (success: Bool, error: NSError?) in
             if error == nil {
                 PFUser.logOut()
                 self.navigationController!.popToRootViewControllerAnimated(true)
             } else {
-                println("Failed to deauthenticate: \(error)")
+                print("Failed to deauthenticate: \(error)")
             }
         }
     }
