@@ -4,5 +4,7 @@ branches:
  only:
  - master
 
+-osx_image: xcode6.4
+
 script:
 - xcodebuild -workspace Layer-Parse-iOS-Swift-Example.xcworkspace -scheme Layer-Parse-iOS-Swift-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
