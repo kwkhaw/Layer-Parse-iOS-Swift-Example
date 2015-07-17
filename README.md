@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/kwkhaw/Layer-Parse-iOS-Swift-Example.svg?branch=master)](https://travis-ci.org/kwkhaw/Layer-Parse-iOS-Swift-Example)
 ![Atlas+Parse Header](Assets/Atlas-Layer-Parse-github-header.png)
 
 # Layer + Parse iOS Example (Swift)
