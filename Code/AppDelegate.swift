@@ -64,8 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupLayer() {
         layerClient = LYRClient(appID: LayerAppIDString)
-        layerClient.autodownloadMaximumContentSize = 1024 * 100
-        layerClient.autodownloadMIMETypes = NSSet(objects: "image/jpeg") as Set<NSObject>
+        layerClient.autodownloadMIMETypes = NSSet(objects: ATLMIMETypeImagePNG, ATLMIMETypeImageJPEG, ATLMIMETypeImageJPEGPreview, ATLMIMETypeImageGIF, ATLMIMETypeImageGIFPreview, ATLMIMETypeLocation) as Set<NSObject>
     }
 }
 
