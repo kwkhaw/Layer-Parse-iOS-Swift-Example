@@ -15,6 +15,8 @@ Here is the original project in Objective-C from [Layer](https://layer.com): [La
 
 This application requires Xcode and the iOS SDK v8.0. Dependencies are managed via [CocoaPods](http://cocoapods.org/) to simplify installation.
 
+**Note: For Swift 2.0 (Xcode 7 beta 6), please use ```swift2``` branch**
+
 ## Setup
 
 1. Clone the project from Github: `$ git clone https://github.com/layerhq/Layer-Parse-iOS-Swift-Example.git`
