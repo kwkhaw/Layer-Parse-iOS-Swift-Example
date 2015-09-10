@@ -32,10 +32,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         self.logInViewController.logInView!.signUpButton!.setBackgroundImage(signupButtonBackgroundImage, forState: UIControlState.Normal)
         self.logInViewController.logInView!.signUpButton!.backgroundColor = ATLBlueColor()
         self.logInViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-        self.logInViewController.fields = (PFLogInFields.UsernameAndPassword |
-                                           PFLogInFields.LogInButton |
-                                           PFLogInFields.SignUpButton |
-                                           PFLogInFields.PasswordForgotten)
+        self.logInViewController.fields = ([PFLogInFields.UsernameAndPassword, PFLogInFields.LogInButton, PFLogInFields.SignUpButton, PFLogInFields.PasswordForgotten])
         self.logInViewController.delegate = self
         let logoImageView: UIImageView = UIImageView(image: UIImage(named:"LayerParseLogin"))
         logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
@@ -80,7 +77,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
             let cancelButtonTitle = NSLocalizedString("OK", comment: "")
             UIAlertView(title: description, message: nil, delegate: nil, cancelButtonTitle: cancelButtonTitle).show()
         }
-        println("Failed to log in...")
+        print("Failed to log in...")
     }
 
     // MARK: - PFSignUpViewControllerDelegate
@@ -90,7 +87,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         var informationComplete: Bool = true
         
         // loop through all of the submitted data
-        for (key, val) in info {
+        for (key, _) in info {
             if let field = info[key] as? String {
                 if field.isEmpty {
                     informationComplete = false
@@ -117,7 +114,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
     }
 
     func signUpViewController(signUpController: PFSignUpViewController, didFailToSignUpWithError error: NSError?) {
-        println("Failed to sign up...")
+        print("Failed to sign up...")
     }
 
     // MARK - IBActions
@@ -126,9 +123,9 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         PFUser.logOut()
         self.layerClient.deauthenticateWithCompletion { success, error in
             if (!success) {
-                println("Failed to deauthenticate: \(error)")
+                print("Failed to deauthenticate: \(error)")
             } else {
-                println("Previous user deauthenticated")
+                print("Previous user deauthenticated")
             }
         }
         
@@ -145,16 +142,16 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         // https://developer.layer.com/docs/quick-start/ios#connect
         self.layerClient.connectWithCompletion { success, error in
             if (!success) {
-                println("Failed to connect to Layer: \(error)")
+                print("Failed to connect to Layer: \(error)")
             } else {
                 let userID: String = PFUser.currentUser()!.objectId!
                 // Once connected, authenticate user.
                 // Check Authenticate step for authenticateLayerWithUserID source
                 self.authenticateLayerWithUserID(userID, completion: { success, error in
                     if (!success) {
-                        println("Failed Authenticating Layer Client with error:\(error)")
+                        print("Failed Authenticating Layer Client with error:\(error)")
                     } else {
-                        println("Authenticated")
+                        print("Authenticated")
                         self.presentConversationListViewController()
                     }
                 })
@@ -167,7 +164,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         if self.layerClient.authenticatedUserID != nil {
             // If the layerClient is authenticated with the requested userID, complete the authentication process.
             if self.layerClient.authenticatedUserID == userID {
-                println("Layer Authenticated as User \(self.layerClient.authenticatedUserID)")
+                print("Layer Authenticated as User \(self.layerClient.authenticatedUserID)")
                 if completion != nil {
                     completion(success: true, error: nil)
                 }
@@ -221,13 +218,13 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
                             if (completion != nil) {
                                 completion(success: true, error: nil)
                             }
-                            println("Layer Authenticated as User: \(authenticatedUserID)")
+                            print("Layer Authenticated as User: \(authenticatedUserID)")
                         } else {
                             completion(success: false, error: error)
                         }
                     }
                 } else {
-                    println("Parse Cloud function failed to be called to generate token with error: \(error)")
+                    print("Parse Cloud function failed to be called to generate token with error: \(error)")
                 }
             }
         }
@@ -244,11 +241,11 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
     
     // MARK - Helper function
     func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
-        var rect = CGRectMake(0, 0, size.width, size.height)
+        let rect = CGRectMake(0, 0, size.width, size.height)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
         UIRectFill(rect)
-        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
     }

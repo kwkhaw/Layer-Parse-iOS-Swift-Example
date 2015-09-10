@@ -26,15 +26,15 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
     // MARK - ATLConversationViewControllerDelegate methods
 
     func conversationViewController(viewController: ATLConversationViewController, didSendMessage message: LYRMessage) {
-        println("Message sent!")
+        print("Message sent!")
     }
 
     func conversationViewController(viewController: ATLConversationViewController, didFailSendingMessage message: LYRMessage, error: NSError?) {
-        println("Message failed to sent with error: \(error)")
+        print("Message failed to sent with error: \(error)")
     }
 
     func conversationViewController(viewController: ATLConversationViewController, didSelectMessage message: LYRMessage) {
-        println("Message selected")
+        print("Message selected")
     }
 
     // MARK - ATLConversationViewControllerDataSource methods
@@ -51,7 +51,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
                     // TODO: Need a good way to refresh all the messages for the refreshed participants...
                     self.reloadCellsForMessagesSentByParticipantWithIdentifier(participantIdentifier)
                 } else {
-                    println("Error querying for users: \(error)")
+                    print("Error querying for users: \(error)")
                 }
             }
         }
@@ -108,7 +108,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
                 let navigationController = UINavigationController(rootViewController: controller)
                 self.navigationController!.presentViewController(navigationController, animated: true, completion: nil)
             } else {
-                println("Error querying for All Users: \(error)")
+                print("Error querying for All Users: \(error)")
             }
         }
     }
@@ -120,7 +120,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
                     callback(participants! as [AnyObject])
                 }
             } else {
-                println("Error search for participants: \(error)")
+                print("Error search for participants: \(error)")
             }
         }
     }
@@ -128,9 +128,9 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
     // MARK - ATLParticipantTableViewController Delegate Methods
 
     func participantTableViewController(participantTableViewController: ATLParticipantTableViewController, didSelectParticipant participant: ATLParticipant) {
-        println("participant: \(participant)")
+        print("participant: \(participant)")
         self.addressBarController.selectParticipant(participant)
-        println("selectedParticipants: \(self.addressBarController.selectedParticipants)")
+        print("selectedParticipants: \(self.addressBarController.selectedParticipants)")
         self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -141,7 +141,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
                     callback(NSSet(array: participants as! [AnyObject]) as Set<NSObject>)
                 }
             } else {
-                println("Error search for participants: \(error)")
+                print("Error search for participants: \(error)")
             }
         }
     }
