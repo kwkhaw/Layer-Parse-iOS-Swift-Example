@@ -25,7 +25,7 @@ This application requires Xcode 7 and the iOS SDK v9.0. Dependencies are managed
 6. (Recommended) If you want test users, import the `Resources/Users.json` file into your User class on Parse.
 7. Build and run the application on your Simulator to create a new user and begin messaging!
 
-For more in-depth documentation about this project, check our [guide](https://developer.layer.com/docs/guides/ios#parse).
+For more in-depth documentation about this project, check our [guide](https://developer.layer.com/docs/ios/atlas#parse).
 
 ![Atlas+Parse Gif](Assets/Atlas-Layer-Parse-messenger-github.gif)
 
