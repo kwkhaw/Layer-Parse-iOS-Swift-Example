@@ -13,9 +13,7 @@ Here is the original project in Objective-C from [Layer](https://layer.com): [La
 
 ## Requirements
 
-This application requires Xcode and the iOS SDK v8.0. Dependencies are managed via [CocoaPods](http://cocoapods.org/) to simplify installation.
-
-**Note: For Swift 2.0 (Xcode 7 beta 6), please use ```swift2``` branch**
+This application requires Xcode 7 and the iOS SDK v9.0. Dependencies are managed via [CocoaPods](http://cocoapods.org/) to simplify installation.
 
 ## Setup
 
