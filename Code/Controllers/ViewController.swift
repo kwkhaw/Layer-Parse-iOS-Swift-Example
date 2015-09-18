@@ -3,6 +3,7 @@ import UIKit
 class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
     var layerClient: LYRClient!
     var logInViewController: PFLogInViewController!
+    var conversationListViewController: ConversationListViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -235,8 +236,9 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
     func presentConversationListViewController() {
         SVProgressHUD.dismiss()
         
-        let controller: ConversationListViewController = ConversationListViewController(layerClient: self.layerClient)
-        self.navigationController!.pushViewController(controller, animated: true)
+        self.conversationListViewController = ConversationListViewController(layerClient: self.layerClient)
+        self.conversationListViewController.displaysAvatarItem = true
+        self.navigationController!.pushViewController(self.conversationListViewController, animated: true)
     }
     
     // MARK - Helper function

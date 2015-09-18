@@ -8,7 +8,11 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
         super.viewDidLoad()
         self.dataSource = self
         self.delegate = self
-        self.addressBarController.delegate = self
+        print("addressBarController: \(self.addressBarController)")
+        self.addressBarController?.delegate = self
+        
+        // Uncomment the following line if you want to show avatars in 1:1 conversations
+        // self.shouldDisplayAvatarItemForOneOtherParticipant = true
         
         // Setup the dateformatter used by the dataSource.
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
@@ -47,7 +51,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
         if (user == nil) {
             UserManager.sharedManager.queryAndCacheUsersWithIDs([participantIdentifier]) { (participants: NSArray?, error: NSError?) -> Void in
                 if (participants?.count > 0 && error == nil) {
-                    self.addressBarController.reloadView()
+                    self.addressBarController?.reloadView()
                     // TODO: Need a good way to refresh all the messages for the refreshed participants...
                     self.reloadCellsForMessagesSentByParticipantWithIdentifier(participantIdentifier)
                 } else {

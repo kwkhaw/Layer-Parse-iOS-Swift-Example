@@ -18,19 +18,10 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
         self.navigationItem.setRightBarButtonItem(composeItem, animated: false)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
     // MARK - ATLConversationListViewControllerDelegate Methods
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, didSelectConversation conversation:LYRConversation) {
-        let controller = ConversationViewController(layerClient: self.layerClient)
-        controller.conversation = conversation
-        controller.displaysAddressBar = true
-        self.navigationController!.pushViewController(controller, animated: true)
+        self.presentControllerWithConversation(conversation)
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, didDeleteConversation conversation: LYRConversation, deletionMode: LYRDeletionMode) {
@@ -56,6 +47,24 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
         }
     }
 
+    func conversationListViewController(conversationListViewController: ATLConversationListViewController!, avatarItemForConversation conversation: LYRConversation!) -> ATLAvatarItem! {
+        let userID: String = conversation.lastMessage.sender.userID
+        if userID == PFUser.currentUser()!.objectId {
+            return PFUser.currentUser()
+        }
+        let user: PFUser? = UserManager.sharedManager.cachedUserForUserID(userID)
+        if user == nil {
+            UserManager.sharedManager.queryAndCacheUsersWithIDs([userID], completion: { (participants, error) in
+                if participants != nil && error == nil {
+                    self.reloadCellForConversation(conversation)
+                } else {
+                    print("Error querying for users: \(error)")
+                }
+            })
+        }
+        return user;
+    }
+    
     // MARK - ATLConversationListViewControllerDataSource Methods
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, titleForConversation conversation: LYRConversation) -> String {
@@ -89,6 +98,33 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
         }
     }
 
+    
+    // MARK:- Conversation Selection From Push Notification
+    
+    func presentConversation(conversation: LYRConversation) {
+        self.presentControllerWithConversation(conversation)
+    }
+    
+    // MARK:- Conversation Selection
+    
+    // The following method handles presenting the correct `ConversationViewController`, regardeless of the current state of the navigation stack.
+    func presentControllerWithConversation(conversation: LYRConversation) {
+        let shouldShowAddressBar: Bool  = conversation.participants.count > 2 || conversation.participants.count == 0
+        let conversationViewController: ConversationViewController = ConversationViewController(layerClient: self.layerClient)
+        conversationViewController.displaysAddressBar = shouldShowAddressBar
+        conversationViewController.conversation = conversation
+    
+        if self.navigationController!.topViewController == self {
+            self.navigationController!.pushViewController(conversationViewController, animated: true)
+        } else {
+            var viewControllers = self.navigationController!.viewControllers
+            let listViewControllerIndex: Int = self.navigationController!.viewControllers.indexOf(self)!
+            viewControllers[listViewControllerIndex + 1 ..< viewControllers.count] = [conversationViewController]
+            self.navigationController!.setViewControllers(viewControllers, animated: true)
+        }
+    }
+    
+    
     // MARK - Actions
 
     func composeButtonTapped(sender: AnyObject) {
