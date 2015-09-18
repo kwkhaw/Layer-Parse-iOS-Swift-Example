@@ -93,78 +93,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        switch application.applicationState {
-        case UIApplicationState.Inactive:
-            print("Inactive state")
-            if userInfo["layer"] == nil {
-                print("userInfo['layer'] == nil: navigateToViewConversation")
-                PFPush.handlePush(userInfo)
-                completionHandler(UIBackgroundFetchResult.NewData)
-                return
-            }
-            
+        if userInfo["layer"] == nil {
+            PFPush.handlePush(userInfo)
+            completionHandler(UIBackgroundFetchResult.NewData)
+            return
+        }
+        
+        let userTappedRemoteNotification: Bool = application.applicationState == UIApplicationState.Inactive
+        var conversation: LYRConversation? = nil
+        if userTappedRemoteNotification {
             SVProgressHUD.show()
-            var conversation: LYRConversation? = self.conversationFromRemoteNotification(userInfo)
+            conversation = self.conversationFromRemoteNotification(userInfo)
             if conversation != nil {
-                print("conversation != nil: navigateToViewConversation")
                 self.navigateToViewForConversation(conversation!)
             }
-
-            let success: Bool = self.layerClient.synchronizeWithRemoteNotification(userInfo, completion: { (changes, error) in
-                if changes?.count > 0 {
-                    print("changes.count > 0: Fetch result")
-                    completionHandler(UIBackgroundFetchResult.NewData)
-                } else {
-                    print("changes.count <= 0: failed or no data")
-                    completionHandler(error != nil ? UIBackgroundFetchResult.Failed : UIBackgroundFetchResult.NoData)
-                }
-
-                // Try navigating once the synchronization completed
-                if conversation == nil {
-                    print("conversation == nil: navigateToViewForConversation")
-                    conversation = self.conversationFromRemoteNotification(userInfo)
-                    self.navigateToViewForConversation(conversation!)
-                }
-            })
-
-            if !success {
-                print("!success: no data")
-                SVProgressHUD.dismiss()
-                completionHandler(UIBackgroundFetchResult.NoData)
-            }
-        case UIApplicationState.Background:
-            print("Background state")
-            let success: Bool = self.layerClient.synchronizeWithRemoteNotification(userInfo, completion: { (changes, error) in
-                if changes?.count > 0 {
-                    print("changes.count > 0: Fetch result")
-                    completionHandler(UIBackgroundFetchResult.NewData)
-                } else {
-                    print("changes.count <= 0: failed or no data")
-                    completionHandler(error != nil ? UIBackgroundFetchResult.Failed : UIBackgroundFetchResult.NoData)
-                }
-            })
-
-            if !success {
-                print("!success: no data")
-                completionHandler(UIBackgroundFetchResult.NoData)
-            }
-        case UIApplicationState.Active:
-            print("Active state")
-            let success: Bool = self.layerClient.synchronizeWithRemoteNotification(userInfo, completion: { (changes, error) in
-                if changes?.count > 0 {
-                    print("changes.count > 0: Fetch result")
-                    completionHandler(UIBackgroundFetchResult.NewData)
-                } else {
-                    print("changes.count <= 0: failed or no data")
-                    completionHandler(error != nil ? UIBackgroundFetchResult.Failed : UIBackgroundFetchResult.NoData)
-                }
-            })
-
-            if !success {
-                print("!success: no data")
-                completionHandler(UIBackgroundFetchResult.NoData)
-            }
         }
+
+        let success: Bool = self.layerClient.synchronizeWithRemoteNotification(userInfo, completion: { (changes, error) in
+            completionHandler(self.getBackgroundFetchResult(changes, error: error))
+
+            if userTappedRemoteNotification && conversation == nil {
+                // Try navigating once the synchronization completed
+                self.navigateToViewForConversation(self.conversationFromRemoteNotification(userInfo))
+            }
+        })
+
+        if !success {
+            // This should not happen?
+            completionHandler(UIBackgroundFetchResult.NoData)
+        }
+    }
+    
+    func getBackgroundFetchResult(changes: [AnyObject]!, error: NSError!) -> UIBackgroundFetchResult {
+        if changes?.count > 0 {
+            return UIBackgroundFetchResult.NewData
+        }
+        return error != nil ? UIBackgroundFetchResult.Failed : UIBackgroundFetchResult.NoData
     }
     
     func conversationFromRemoteNotification(remoteNotification: [NSObject : AnyObject]) -> LYRConversation {
@@ -177,10 +141,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if self.controller.conversationListViewController != nil {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 SVProgressHUD.dismiss()
-                self.controller.conversationListViewController.presentConversation(conversation)
+                if (self.controller.navigationController!.topViewController as? ConversationViewController)?.conversation != conversation {
+                    self.controller.conversationListViewController.presentConversation(conversation)
+                }
             });
         } else {
-                SVProgressHUD.dismiss()
+            SVProgressHUD.dismiss()
         }
     }
     
