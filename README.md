@@ -24,6 +24,7 @@ This application requires Xcode 7 and the iOS SDK v9.0. Dependencies are managed
 5. Add the [Layer Parse Module](https://github.com/layerhq/layer-parse-module) to your Parse Cloud Code to serve as an authentication manager.
 6. (Recommended) If you want test users, import the `Resources/Users.json` file into your User class on Parse.
 7. Build and run the application on your Simulator to create a new user and begin messaging!
+8. Please follow [this guide](https://developer.layer.com/docs/ios/guides#push-notification) to configure the push notification on iOS Dev Center.  
 
 For more in-depth documentation about this project, check our [guide](https://developer.layer.com/docs/ios/atlas#parse).
 
