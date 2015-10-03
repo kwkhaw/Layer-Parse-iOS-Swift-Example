@@ -83,7 +83,7 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
 
             let checkmark: String = "✔︎"
             var textColor: UIColor = UIColor.lightGrayColor()
-            let status: LYRRecipientStatus! = LYRRecipientStatus(rawValue: recipientStatusDict[participantAsString]!.unsignedIntegerValue)
+            let status: LYRRecipientStatus! = LYRRecipientStatus(rawValue: Int(recipientStatusDict[participantAsString]!.unsignedIntegerValue))
             switch status! {
             case .Sent:
                 textColor = UIColor.lightGrayColor()
