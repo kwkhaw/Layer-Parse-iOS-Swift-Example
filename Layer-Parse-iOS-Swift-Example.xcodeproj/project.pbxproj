@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E2B5E473F6FFDFE92994863 /* Pods_Layer_Parse_iOS_Swift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E5E71EE215EDD216533ADD /* Pods_Layer_Parse_iOS_Swift_Example.framework */; };
 		C8919A9A1B219C8500DC4EED /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8919A8C1B219C8500DC4EED /* LaunchScreen.xib */; };
 		C8919A9B1B219C8500DC4EED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8919A8E1B219C8500DC4EED /* Main.storyboard */; };
 		C8919A9C1B219C8500DC4EED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8919A901B219C8500DC4EED /* Images.xcassets */; };
@@ -21,7 +22,6 @@
 		C8919AB31B219CE800DC4EED /* PFUser+ATLParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8919AAB1B219CE800DC4EED /* PFUser+ATLParticipant.swift */; };
 		C8919AB41B219CE800DC4EED /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8919AAD1B219CE800DC4EED /* UserManager.swift */; };
 		C8919AB81B21A05500DC4EED /* Layer_Parse_iOS_Swift_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8919A971B219C8500DC4EED /* Layer_Parse_iOS_Swift_ExampleTests.swift */; };
-		F00A4FC868CFDD2EF84DA121 /* libPods-Layer-Parse-iOS-Swift-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28525401F0002A2A7B783B16 /* libPods-Layer-Parse-iOS-Swift-Example.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 
 /* Begin PBXFileReference section */
 		19AEEE726D7D94ECBA301B2F /* Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Layer-Parse-iOS-Swift-Example/Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig"; sourceTree = "<group>"; };
-		28525401F0002A2A7B783B16 /* libPods-Layer-Parse-iOS-Swift-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Layer-Parse-iOS-Swift-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70E5E71EE215EDD216533ADD /* Pods_Layer_Parse_iOS_Swift_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Layer_Parse_iOS_Swift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8919A4A1B2198C900DC4EED /* Layer-Parse-iOS-Swift-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Layer-Parse-iOS-Swift-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8919A5F1B2198C900DC4EED /* Layer-Parse-iOS-Swift-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Layer-Parse-iOS-Swift-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8919A8D1B219C8500DC4EED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F00A4FC868CFDD2EF84DA121 /* libPods-Layer-Parse-iOS-Swift-Example.a in Frameworks */,
+				6E2B5E473F6FFDFE92994863 /* Pods_Layer_Parse_iOS_Swift_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,7 +81,7 @@
 		7A628A8690789E42A0B4C26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				28525401F0002A2A7B783B16 /* libPods-Layer-Parse-iOS-Swift-Example.a */,
+				70E5E71EE215EDD216533ADD /* Pods_Layer_Parse_iOS_Swift_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

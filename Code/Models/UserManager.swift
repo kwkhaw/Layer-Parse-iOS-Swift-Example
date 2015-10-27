@@ -1,4 +1,5 @@
 import Foundation
+import Parse
 
 class UserManager {
     static let sharedManager = UserManager()

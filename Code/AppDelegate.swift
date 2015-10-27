@@ -1,4 +1,7 @@
 import UIKit
+import Parse
+import Atlas
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

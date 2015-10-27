@@ -1,4 +1,8 @@
 import UIKit
+import Atlas
+import Parse
+import ParseUI
+import SVProgressHUD
 
 class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
     var layerClient: LYRClient!

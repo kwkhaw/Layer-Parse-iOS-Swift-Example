@@ -1,4 +1,6 @@
 import UIKit
+import Atlas
+import Parse
 
 class ConversationViewController: ATLConversationViewController, ATLConversationViewControllerDataSource, ATLConversationViewControllerDelegate, ATLParticipantTableViewControllerDelegate {
     var dateFormatter: NSDateFormatter = NSDateFormatter()

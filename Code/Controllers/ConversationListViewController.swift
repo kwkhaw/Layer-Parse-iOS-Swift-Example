@@ -1,4 +1,6 @@
 import UIKit
+import Atlas
+import Parse
 
 class ConversationListViewController: ATLConversationListViewController, ATLConversationListViewControllerDelegate, ATLConversationListViewControllerDataSource {
 

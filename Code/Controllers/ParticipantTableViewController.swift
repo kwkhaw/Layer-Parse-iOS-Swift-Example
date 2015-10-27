@@ -1,4 +1,5 @@
 import UIKit
+import Atlas
 
 class ParticipantTableViewController: ATLParticipantTableViewController {
 
