@@ -21,7 +21,7 @@
 		C8919AB31B219CE800DC4EED /* PFUser+ATLParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8919AAB1B219CE800DC4EED /* PFUser+ATLParticipant.swift */; };
 		C8919AB41B219CE800DC4EED /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8919AAD1B219CE800DC4EED /* UserManager.swift */; };
 		C8919AB81B21A05500DC4EED /* Layer_Parse_iOS_Swift_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8919A971B219C8500DC4EED /* Layer_Parse_iOS_Swift_ExampleTests.swift */; };
-		FF0A03CB744933CB2B995CE7 /* libPods-Layer-Parse-iOS-Swift-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B14C7ECA0B5AAC8620254EA8 /* libPods-Layer-Parse-iOS-Swift-Example.a */; };
+		F00A4FC868CFDD2EF84DA121 /* libPods-Layer-Parse-iOS-Swift-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28525401F0002A2A7B783B16 /* libPods-Layer-Parse-iOS-Swift-Example.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 
 /* Begin PBXFileReference section */
 		19AEEE726D7D94ECBA301B2F /* Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Layer-Parse-iOS-Swift-Example/Pods-Layer-Parse-iOS-Swift-Example.release.xcconfig"; sourceTree = "<group>"; };
-		B14C7ECA0B5AAC8620254EA8 /* libPods-Layer-Parse-iOS-Swift-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Layer-Parse-iOS-Swift-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		28525401F0002A2A7B783B16 /* libPods-Layer-Parse-iOS-Swift-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Layer-Parse-iOS-Swift-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8919A4A1B2198C900DC4EED /* Layer-Parse-iOS-Swift-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Layer-Parse-iOS-Swift-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8919A5F1B2198C900DC4EED /* Layer-Parse-iOS-Swift-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Layer-Parse-iOS-Swift-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8919A8D1B219C8500DC4EED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF0A03CB744933CB2B995CE7 /* libPods-Layer-Parse-iOS-Swift-Example.a in Frameworks */,
+				F00A4FC868CFDD2EF84DA121 /* libPods-Layer-Parse-iOS-Swift-Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,7 +81,7 @@
 		7A628A8690789E42A0B4C26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B14C7ECA0B5AAC8620254EA8 /* libPods-Layer-Parse-iOS-Swift-Example.a */,
+				28525401F0002A2A7B783B16 /* libPods-Layer-Parse-iOS-Swift-Example.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -190,6 +190,7 @@
 				C8919A471B2198C900DC4EED /* Frameworks */,
 				C8919A481B2198C900DC4EED /* Resources */,
 				406B662AF4895D4477A1C093 /* Copy Pods Resources */,
+				AFBE2FD65331CA8EDCAC591C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -300,6 +301,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Layer-Parse-iOS-Swift-Example/Pods-Layer-Parse-iOS-Swift-Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFBE2FD65331CA8EDCAC591C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Layer-Parse-iOS-Swift-Example/Pods-Layer-Parse-iOS-Swift-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EFEB5F850C0B3024208C1784 /* Check Pods Manifest.lock */ = {
@@ -464,7 +480,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.layer.LayerParseSwiftExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -483,7 +499,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.layer.LayerParseSwiftExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -495,10 +511,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -515,10 +528,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.layer.$(PRODUCT_NAME:rfc1034identifier)";

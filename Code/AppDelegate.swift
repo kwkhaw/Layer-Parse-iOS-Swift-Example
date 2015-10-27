@@ -62,16 +62,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // For more information about Push, check out:
         // https://developer.layer.com/docs/guides/ios#push-notification
     
-        if #available(iOS 8.0, *) {
-            // Register device for iOS8
-            let notificationSettings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound], categories: nil)
-            application.registerUserNotificationSettings(notificationSettings)
-            application.registerForRemoteNotifications()
-        } else {
-            // Fallback on earlier versions
-            // Register device for iOS7
-            application.registerForRemoteNotificationTypes([UIRemoteNotificationType.Alert, UIRemoteNotificationType.Sound, UIRemoteNotificationType.Badge])
-        }
+        // Register device for iOS8
+        let notificationSettings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound], categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
+        application.registerForRemoteNotifications()
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
