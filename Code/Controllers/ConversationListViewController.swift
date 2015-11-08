@@ -50,6 +50,9 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, avatarItemForConversation conversation: LYRConversation!) -> ATLAvatarItem! {
+        if conversation.lastMessage == nil {
+            return nil
+        }
         let userID: String = conversation.lastMessage.sender.userID
         if userID == PFUser.currentUser()!.objectId {
             return PFUser.currentUser()
