@@ -46,8 +46,8 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
     // MARK - ATLConversationViewControllerDataSource methods
 
     func conversationViewController(conversationViewController: ATLConversationViewController, participantForIdentifier participantIdentifier: String) -> ATLParticipant? {
-        if (participantIdentifier == PFUser.currentUser()!.objectId!) {
-            return PFUser.currentUser()!
+        if (participantIdentifier == PFUser.currentUser()?.objectId) {
+            return PFUser.currentUser()
         }
         let user: PFUser? = UserManager.sharedManager.cachedUserForUserID(participantIdentifier)
         if (user == nil) {
@@ -107,7 +107,12 @@ class ConversationViewController: ATLConversationViewController, ATLConversation
     override func addressBarViewController(addressBarViewController: ATLAddressBarViewController, didTapAddContactsButton addContactsButton: UIButton) {
         UserManager.sharedManager.queryForAllUsersWithCompletion { (users: NSArray?, error: NSError?) in
             if error == nil {
-                let participants = NSSet(array: users as! [PFUser]) as Set<NSObject>
+                guard let pfusers = users as? [PFUser] else {
+                    print("Users is empty")
+                    return
+                }
+                
+                let participants = NSSet(array: pfusers) as Set<NSObject>
                 let controller = ParticipantTableViewController(participants: participants, sortType: ATLParticipantPickerSortType.FirstName)
                 controller.delegate = self
                 

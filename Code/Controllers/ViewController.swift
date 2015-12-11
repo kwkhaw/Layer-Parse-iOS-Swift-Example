@@ -176,7 +176,7 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
                 return
             } else {
                 //If the authenticated userID is different, then deauthenticate the current client and re-authenticate with the new userID.
-                self.layerClient.deauthenticateWithCompletion { (success: Bool, error: NSError!) in
+                self.layerClient.deauthenticateWithCompletion { (success: Bool, error: NSError?) in
                     if error != nil {
                         self.authenticationTokenWithUserId(userID, completion: { (success: Bool, error: NSError?) in
                             if (completion != nil) {
@@ -204,7 +204,14 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
         /*
         * 1. Request an authentication Nonce from Layer
         */
-        self.layerClient.requestAuthenticationNonceWithCompletion { (nonce: String!, error: NSError!) in
+        self.layerClient.requestAuthenticationNonceWithCompletion { (nonceString: String?, error: NSError?) in
+            guard let nonce = nonceString else {
+                if (completion != nil) {
+                    completion(success: false, error: error)
+                }
+                return
+            }
+            
             if (nonce.isEmpty) {
                 if (completion != nil) {
                     completion(success: false, error: error)
@@ -219,14 +226,24 @@ class ViewController: UIViewController, PFLogInViewControllerDelegate, PFSignUpV
                 if error == nil {
                     let identityToken = object as! String
                     self.layerClient.authenticateWithIdentityToken(identityToken) { authenticatedUserID, error in
-                        if (!authenticatedUserID.isEmpty) {
+                        guard let userID = authenticatedUserID else {
                             if (completion != nil) {
-                                completion(success: true, error: nil)
+                                completion(success: false, error: error)
                             }
-                            print("Layer Authenticated as User: \(authenticatedUserID)")
-                        } else {
-                            completion(success: false, error: error)
+                            return
                         }
+                        
+                        if (userID.isEmpty) {
+                            if (completion != nil) {
+                                completion(success: false, error: error)
+                            }
+                            return
+                        }
+                        
+                        if (completion != nil) {
+                            completion(success: true, error: nil)
+                        }
+                        print("Layer Authenticated as User: \(userID)")
                     }
                 } else {
                     print("Parse Cloud function failed to be called to generate token with error: \(error)")
