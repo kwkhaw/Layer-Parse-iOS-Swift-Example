@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/kwkhaw/Layer-Parse-iOS-Swift-Example.svg?branch=master)](https://travis-ci.org/kwkhaw/Layer-Parse-iOS-Swift-Example)
-[![](https://img.shields.io/github/issues-raw/kwkhaw/Layer-Parse-iOS-Swift-Example.svg)]()
-[![GitHub license](https://img.shields.io/github/license/kwkhaw/Layer-Parse-iOS-Swift-Example.svg)]()
 ![Atlas+Parse Header](Assets/Atlas-Layer-Parse-github-header.png)
+
+**Note: I no longer actively working on this project. If you encounter any problem, please open an issue and hopefully the community to help out. If you are interested to maintain this project, kindly contact me. :-)**
 
 # Layer + Parse iOS Example (Swift)
 
