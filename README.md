@@ -19,7 +19,7 @@ This application requires Xcode 7 and the iOS SDK v9.0. Dependencies are managed
 
 ## Setup
 
-1. Clone the project from Github: `$ git clone https://github.com/layerhq/Layer-Parse-iOS-Swift-Example.git`
+1. Clone the project from Github: `$ git clone https://github.com/kwkhaw/Layer-Parse-iOS-Swift-Example.git`
 2. Install the dependencies in the root directory via CocoaPods: `$ pod install`
 3. Open `Layer-Parse-iOS-Swift-Example.xcworkspace` in Xcode.
 4. Replace `LayerAppIDString` , `ParseAppIDString` , and `ParseClientKeyString` in `AppDelegate.swift` with your Layer and Parse credentials.

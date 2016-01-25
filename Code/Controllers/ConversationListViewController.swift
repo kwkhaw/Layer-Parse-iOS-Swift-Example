@@ -50,8 +50,13 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, avatarItemForConversation conversation: LYRConversation!) -> ATLAvatarItem! {
-        let userID: String = conversation.lastMessage.sender.userID
-        if userID == PFUser.currentUser()!.objectId {
+        guard let lastMessage = conversation.lastMessage else {
+            return nil
+        }
+        guard let userID: String = lastMessage.sender.userID else {
+            return nil
+        }
+        if userID == PFUser.currentUser()?.objectId {
             return PFUser.currentUser()
         }
         let user: PFUser? = UserManager.sharedManager.cachedUserForUserID(userID)
@@ -70,8 +75,8 @@ class ConversationListViewController: ATLConversationListViewController, ATLConv
     // MARK - ATLConversationListViewControllerDataSource Methods
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController, titleForConversation conversation: LYRConversation) -> String {
-        if conversation.metadata["title"] != nil {
-            return conversation.metadata["title"] as! String
+        if let title = conversation.metadata?["title"] {
+            return title
         } else {
             let listOfParticipant = Array(conversation.participants)
             let unresolvedParticipants: NSArray = UserManager.sharedManager.unCachedUserIDsFromParticipants(listOfParticipant)
